@@ -1,0 +1,30 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<script>
+			import { loadGtm } from "#lib/gtm";
+
+			// Inlined at build time; unset (dev, previews, local builds) leaves GTM off.
+			loadGtm(import.meta.env.PUBLIC_GTM_ID, document);
+		</script>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
