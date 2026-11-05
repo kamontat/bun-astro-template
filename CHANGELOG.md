@@ -2,7 +2,7 @@
 
 What changed in this project and why, newest first.
 
-## 2026-11-04: Astro template on Bun, ported from bun-lit-template
+## 2026-11-05: Astro template on Bun, ported from bun-lit-template
 
 ### Features
 
@@ -21,6 +21,8 @@ What changed in this project and why, newest first.
 - The CI and Cloudflare Workers deploy workflows, `GET_START.md` agent setup prompt and
   Claude Code skills from bun-lit-template, adapted to Astro; `ui-components` is replaced by
   `astro-components`.
+- `.vscode/extensions.json` recommends the Astro extension, and `bun run astro …` runs any
+  other Astro CLI command, such as `bun run astro add <integration>`.
 
 ### Decisions
 
