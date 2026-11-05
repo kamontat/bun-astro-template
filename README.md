@@ -21,16 +21,16 @@ tooling, CI and deploy setup.
 
 ## Stack
 
-| Concern         | Tool                                                                 |
-| --------------- | -------------------------------------------------------------------- |
-| Runtime         | [Bun](https://bun.com/) (pinned via [mise](https://mise.jdx.dev/))   |
-| Framework       | [Astro](https://astro.build/), static output                         |
-| CSS reset       | [`@kcstyles/reset.css`](https://www.npmjs.com/package/@kcstyles/reset.css) |
-| Lint / format   | [Biome](https://biomejs.dev/) with `@kcconfigs/biome`                |
-| Type checking   | `astro check` with `@kcconfigs/tsconfig` and Astro's `strictest` preset |
-| Tests           | [Vitest](https://vitest.dev/) with Astro's [Container API](https://docs.astro.build/en/reference/container-reference/) and [happy-dom](https://github.com/capricorn86/happy-dom) |
-| Hosting         | Cloudflare Workers static assets via [Wrangler](https://developers.cloudflare.com/workers/wrangler/) |
-| CI / CD         | GitHub Actions                                                       |
+| Concern       | Tool                                                                                                                                                                             |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Runtime       | [Bun](https://bun.com/) (pinned via [mise](https://mise.jdx.dev/))                                                                                                               |
+| Framework     | [Astro](https://astro.build/), static output                                                                                                                                     |
+| CSS reset     | [`@kcstyles/reset.css`](https://www.npmjs.com/package/@kcstyles/reset.css)                                                                                                       |
+| Lint / format | [Biome](https://biomejs.dev/) with `@kcconfigs/biome`                                                                                                                            |
+| Type checking | `astro check` with `@kcconfigs/tsconfig` and Astro's `strictest` preset                                                                                                          |
+| Tests         | [Vitest](https://vitest.dev/) with Astro's [Container API](https://docs.astro.build/en/reference/container-reference/) and [happy-dom](https://github.com/capricorn86/happy-dom) |
+| Hosting       | Cloudflare Workers static assets via [Wrangler](https://developers.cloudflare.com/workers/wrangler/)                                                                             |
+| CI / CD       | GitHub Actions                                                                                                                                                                   |
 
 Every package script runs on the Bun runtime, not Node.js: `bunfig.toml` sets
 `[run] bun = true`, the config form of `bunx --bun astro dev` from
@@ -79,14 +79,14 @@ Every package script runs on the Bun runtime, not Node.js: `bunfig.toml` sets
 After creating a project from this template, replace every `<TODO>`
 placeholder (`grep -rn "<TODO>" --exclude-dir=node_modules .`):
 
-| File                                      | Placeholder                                                         |
-| ----------------------------------------- | ------------------------------------------------------------------- |
-| `package.json`                            | `name`, the package name                                            |
-| `bun.lock`                                | `name`, kept in sync with `package.json` (or rerun `bun install`)   |
-| `wrangler.jsonc`                          | `name`, the Cloudflare Worker name                                  |
+| File                                      | Placeholder                                                                         |
+| ----------------------------------------- | ----------------------------------------------------------------------------------- |
+| `package.json`                            | `name`, the package name                                                            |
+| `bun.lock`                                | `name`, kept in sync with `package.json` (or rerun `bun install`)                   |
+| `wrangler.jsonc`                          | `name`, the Cloudflare Worker name                                                  |
 | `src/pages/index.astro`                   | `<BaseLayout title="TODO">`, the page title (plain `TODO`, not matched by the grep) |
-| `.github/workflows/deploy-preview.yml`    | `environment.url`, `https://pr-<number>-<TODO>.kcinth.workers.dev`  |
-| `.github/workflows/deploy-production.yml` | `environment.url`, `https://<TODO>.kc.in.th`                        |
+| `.github/workflows/deploy-preview.yml`    | `environment.url`, `https://pr-<number>-<TODO>.kcinth.workers.dev`                  |
+| `.github/workflows/deploy-production.yml` | `environment.url`, `https://<TODO>.kc.in.th`                                        |
 
 > [!IMPORTANT]
 > `<TODO>` is not a valid package or Worker name, so `bun install` and
@@ -135,23 +135,23 @@ favicons in `public/`.
 so you never need long relative paths:
 
 ```ts
-import HelloWorld from "#components/HelloWorld.astro"; // ./src/components/HelloWorld.astro
-import BaseLayout from "#layouts/BaseLayout.astro"; // ./src/layouts/BaseLayout.astro
-import { loadGtm } from "#lib/gtm"; // ./src/lib/gtm.ts
+import HelloWorld from "#components/HelloWorld.astro" // ./src/components/HelloWorld.astro
+import BaseLayout from "#layouts/BaseLayout.astro" // ./src/layouts/BaseLayout.astro
+import {loadGtm} from "#lib/gtm" // ./src/lib/gtm.ts
 ```
 
 ## Scripts
 
-| Command               | Description                                              |
-| --------------------- | -------------------------------------------------------- |
-| `bun run dev`         | Start the dev server with hot reloading on port 4321     |
-| `bun run build`       | Empty `dist/`, then build the static site into it        |
-| `bun run preview`     | Serve the production build from `dist/` on port 4321     |
-| `bun run test`        | Run tests with Vitest                                    |
-| `bun run check`       | `check:type` then `check:biome`                          |
-| `bun run check:type`  | Type check every `.astro` and `.ts` file with `astro check` |
-| `bun run check:biome` | Lint and format check with Biome, without changing files |
-| `bun run format`      | Apply Biome fixes and formatting (including unsafe ones) |
+| Command               | Description                                                  |
+| --------------------- | ------------------------------------------------------------ |
+| `bun run dev`         | Start the dev server with hot reloading on port 4321         |
+| `bun run build`       | Empty `dist/`, then build the static site into it            |
+| `bun run preview`     | Serve the production build from `dist/` on port 4321         |
+| `bun run test`        | Run tests with Vitest                                        |
+| `bun run check`       | `check:type` then `check:biome`                              |
+| `bun run check:type`  | Type check every `.astro` and `.ts` file with `astro check`  |
+| `bun run check:biome` | Lint and format check with Biome, without changing files     |
+| `bun run format`      | Apply Biome fixes and formatting (including unsafe ones)     |
 | `bun run astro …`     | Any other Astro CLI command, e.g. `bun run astro add <name>` |
 
 `dev` and `preview` accept `--port` / `--host`, for example
@@ -240,15 +240,15 @@ Tests run with Vitest on the Bun runtime and live in `tests/`, mirroring
 the Container API:
 
 ```ts
-import { experimental_AstroContainer as AstroContainer } from "astro/container";
-import { expect, test } from "vitest";
-import HelloWorld from "#components/HelloWorld.astro";
+import {experimental_AstroContainer as AstroContainer} from "astro/container"
+import {expect, test} from "vitest"
+import HelloWorld from "#components/HelloWorld.astro"
 
 test("renders custom name", async () => {
-	const container = await AstroContainer.create();
-	const html = await container.renderToString(HelloWorld, { props: { name: "Bun" } });
-	expect(html).toMatch(/<h1[^>]*>Hello, Bun!<\/h1>/);
-});
+	const container = await AstroContainer.create()
+	const html = await container.renderToString(HelloWorld, {props: {name: "Bun"}})
+	expect(html).toMatch(/<h1[^>]*>Hello, Bun!<\/h1>/)
+})
 ```
 
 Browser code in `src/lib/` is tested against a DOM by starting the file with
@@ -272,11 +272,11 @@ bunx wrangler deploy
 
 ### GitHub Actions
 
-| Workflow                  | Trigger            | Does                                                                  |
-| ------------------------- | ------------------ | --------------------------------------------------------------------- |
-| `main.yml`                | every push         | `check`, `build`, `test`                                              |
-| `deploy-preview.yml`      | pull requests      | uploads a preview version aliased `pr-<number>`                       |
-| `deploy-production.yml`   | push to `main`     | deploys to production, with `PUBLIC_GTM_ID` from `vars.GTM_ID`        |
+| Workflow                | Trigger        | Does                                                           |
+| ----------------------- | -------------- | -------------------------------------------------------------- |
+| `main.yml`              | every push     | `check`, `build`, `test`                                       |
+| `deploy-preview.yml`    | pull requests  | uploads a preview version aliased `pr-<number>`                |
+| `deploy-production.yml` | push to `main` | deploys to production, with `PUBLIC_GTM_ID` from `vars.GTM_ID` |
 
 Both deploy jobs skip in a template repository
 (`github.event.repository.is_template`), so this template never tries to deploy
@@ -284,9 +284,9 @@ itself while repositories created from it do.
 
 Set these repository secrets for the deploy workflows:
 
-| Secret                  | Value                                                                 |
-| ----------------------- | --------------------------------------------------------------------- |
-| `CLOUDFLARE_ACCOUNT_ID` | your Cloudflare account ID                                            |
+| Secret                  | Value                                                                                                                               |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `CLOUDFLARE_ACCOUNT_ID` | your Cloudflare account ID                                                                                                          |
 | `CLOUDFLARE_API_TOKEN`  | an **account** API token scoped to the Worker with **Editor**, plus **Workers Routes: Edit** on the zone if you use a custom domain |
 
 A Worker-scoped token can deploy the Worker but not create it, so create the
@@ -337,15 +337,15 @@ than at the top of `<head>` as in Google's snippet, and there is no
 `.claude/skills/` holds [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills)
 that teach an agent this repository's workflow and conventions:
 
-| Skill                | Covers                                                                      |
-| -------------------- | --------------------------------------------------------------------------- |
-| `shipping-a-change`  | every change in a worktree, test first, ending in a PR with a preview URL   |
-| `landing-a-change`   | after approval: changelog entry, merge commit, worktree cleanup             |
-| `changelog`          | the `CHANGELOG.md` entry format and which section a change belongs in        |
-| `adding-a-page`      | adding a route under `src/pages/`, `BaseLayout`, links and trailing slashes  |
-| `astro-components`   | Astro component conventions, scoped styles, client scripts, Container API tests |
-| `build-and-deploy`   | the build, `astro.config.ts`, `wrangler.jsonc`, workflows, pinned action SHAs |
-| `repo-scripts`       | package scripts, the Bun runtime flag, what `check` reads, TypeScript and Biome strictness |
+| Skill               | Covers                                                                                     |
+| ------------------- | ------------------------------------------------------------------------------------------ |
+| `shipping-a-change` | every change in a worktree, test first, ending in a PR with a preview URL                  |
+| `landing-a-change`  | after approval: changelog entry, merge commit, worktree cleanup                            |
+| `changelog`         | the `CHANGELOG.md` entry format and which section a change belongs in                      |
+| `adding-a-page`     | adding a route under `src/pages/`, `BaseLayout`, links and trailing slashes                |
+| `astro-components`  | Astro component conventions, scoped styles, client scripts, Container API tests            |
+| `build-and-deploy`  | the build, `astro.config.ts`, `wrangler.jsonc`, workflows, pinned action SHAs              |
+| `repo-scripts`      | package scripts, the Bun runtime flag, what `check` reads, TypeScript and Biome strictness |
 
 `shipping-a-change` and `landing-a-change` assume merge commits are allowed and
 head branches are deleted after merge (`gh repo edit --enable-merge-commit
