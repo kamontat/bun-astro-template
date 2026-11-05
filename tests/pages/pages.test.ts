@@ -1,7 +1,7 @@
-import {Glob} from "bun"
-import {expect, test} from "vitest"
+import { Glob } from "bun"
+import { expect, test } from "vitest"
 
-const pages = Array.from(new Glob("**/*.astro").scanSync({cwd: "src/pages"}))
+const pages = Array.from(new Glob("**/*.astro").scanSync({ cwd: "src/pages" }))
 
 test("src/pages has at least one page", () => {
 	expect(pages.length).toBeGreaterThan(0)

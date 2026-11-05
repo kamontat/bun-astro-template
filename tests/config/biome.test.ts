@@ -1,12 +1,12 @@
-import {spawnSync} from "node:child_process"
-import {mkdtempSync, readFileSync, rmSync, writeFileSync} from "node:fs"
-import {join} from "node:path"
-import {afterAll, describe, expect, it} from "vitest"
+import { spawnSync } from "node:child_process"
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs"
+import { join } from "node:path"
+import { afterAll, describe, expect, it } from "vitest"
 
 const root = join(import.meta.dirname, "..", "..")
 const dir = mkdtempSync(join(import.meta.dirname, "fixture-"))
 
-afterAll(() => rmSync(dir, {recursive: true, force: true}))
+afterAll(() => rmSync(dir, { recursive: true, force: true }))
 
 // Lints a temporary .astro file with the project's biome.json.
 const lint = (source: string) => {

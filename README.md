@@ -137,7 +137,7 @@ so you never need long relative paths:
 ```ts
 import HelloWorld from "#components/HelloWorld.astro" // ./src/components/HelloWorld.astro
 import BaseLayout from "#layouts/BaseLayout.astro" // ./src/layouts/BaseLayout.astro
-import {loadGtm} from "#lib/gtm" // ./src/lib/gtm.ts
+import { loadGtm } from "#lib/gtm" // ./src/lib/gtm.ts
 ```
 
 ## Scripts
@@ -225,7 +225,7 @@ import BaseLayout from "#layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About">
-	<h1>About</h1>
+  <h1>About</h1>
 </BaseLayout>
 ```
 
@@ -240,14 +240,14 @@ Tests run with Vitest on the Bun runtime and live in `tests/`, mirroring
 the Container API:
 
 ```ts
-import {experimental_AstroContainer as AstroContainer} from "astro/container"
-import {expect, test} from "vitest"
+import { experimental_AstroContainer as AstroContainer } from "astro/container"
+import { expect, test } from "vitest"
 import HelloWorld from "#components/HelloWorld.astro"
 
 test("renders custom name", async () => {
-	const container = await AstroContainer.create()
-	const html = await container.renderToString(HelloWorld, {props: {name: "Bun"}})
-	expect(html).toMatch(/<h1[^>]*>Hello, Bun!<\/h1>/)
+  const container = await AstroContainer.create()
+  const html = await container.renderToString(HelloWorld, { props: { name: "Bun" } })
+  expect(html).toMatch(/<h1[^>]*>Hello, Bun!<\/h1>/)
 })
 ```
 

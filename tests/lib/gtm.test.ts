@@ -1,9 +1,9 @@
 // @vitest-environment happy-dom
-import {afterEach, expect, test} from "vitest"
+import { afterEach, expect, test } from "vitest"
 
-import {loadGtm} from "#lib/gtm"
+import { loadGtm } from "#lib/gtm"
 
-type GtmWindow = Window & {dataLayer?: unknown[]}
+type GtmWindow = Window & { dataLayer?: unknown[] }
 
 const gtmScripts = () => document.querySelectorAll('script[src^="https://www.googletagmanager.com/gtm.js"]')
 
@@ -23,14 +23,14 @@ test("injects the container script for a valid id", () => {
 test("pushes the gtm.start event to dataLayer", () => {
 	loadGtm("GTM-ABC1234", document)
 	const [event] = (window as GtmWindow).dataLayer ?? []
-	expect(event).toMatchObject({event: "gtm.js"})
-	expect(typeof (event as {"gtm.start": unknown})["gtm.start"]).toBe("number")
+	expect(event).toMatchObject({ event: "gtm.js" })
+	expect(typeof (event as { "gtm.start": unknown })["gtm.start"]).toBe("number")
 })
 
 test("keeps entries already in dataLayer", () => {
-	;(window as GtmWindow).dataLayer = [{consent: "default"}]
+	;(window as GtmWindow).dataLayer = [{ consent: "default" }]
 	loadGtm("GTM-ABC1234", document)
-	expect((window as GtmWindow).dataLayer?.[0]).toEqual({consent: "default"})
+	expect((window as GtmWindow).dataLayer?.[0]).toEqual({ consent: "default" })
 	expect((window as GtmWindow).dataLayer).toHaveLength(2)
 })
 

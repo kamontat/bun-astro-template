@@ -1,4 +1,4 @@
-type GtmWindow = Window & {dataLayer?: unknown[]}
+type GtmWindow = Window & { dataLayer?: unknown[] }
 
 const GTM_ID = /^GTM-[A-Z0-9]+$/
 const GTM_ORIGIN = "https://www.googletagmanager.com"
@@ -15,7 +15,7 @@ export const loadGtm = (id: string | undefined, doc: Document): boolean => {
 	const win = doc.defaultView as GtmWindow | null
 	if (win) {
 		win.dataLayer = win.dataLayer ?? []
-		win.dataLayer.push({"gtm.start": Date.now(), event: "gtm.js"})
+		win.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" })
 	}
 
 	const script = doc.createElement("script")

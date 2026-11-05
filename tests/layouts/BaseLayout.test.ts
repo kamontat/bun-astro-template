@@ -1,4 +1,4 @@
-import {expect, test} from "vitest"
+import { expect, test } from "vitest"
 
 test("BaseLayout loads Google Tag Manager from PUBLIC_GTM_ID", async () => {
 	const source = await Bun.file("src/layouts/BaseLayout.astro").text()
