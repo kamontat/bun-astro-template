@@ -5,13 +5,13 @@
     "": {
       "name": "<TODO>",
       "dependencies": {
-        "@kcstyles/reset.css": "2.0.3",
+        "@kcstyles/reset.css": "2.0.4",
         "astro": "7.4.5",
       },
       "devDependencies": {
         "@astrojs/check": "0.9.12",
         "@biomejs/biome": "2.6.5",
-        "@kcconfigs/biome": "3.1.0",
+        "@kcconfigs/biome": "4.0.0",
         "@kcconfigs/tsconfig": "2.1.2",
         "@types/bun": "1.4.4",
         "happy-dom": "21.0.4",
@@ -264,11 +264,11 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
-    "@kcconfigs/biome": ["@kcconfigs/biome@3.1.0", "", { "peerDependencies": { "@biomejs/biome": "^2.0.0" } }, "sha512-BeR4GkUUbhsvOqhdZWGQIjuesUdSk0BCItXzZjb1pfe4qHNPiP1HTm8FzsWc1PECNKlR9UCMZhiZbhBKZmuIIw=="],
+    "@kcconfigs/biome": ["@kcconfigs/biome@4.0.0", "", { "peerDependencies": { "@biomejs/biome": "^2.6.0" } }, "sha512-AyDrZAkvzYKo8whQ5VyXyRNLQ5Pq6SSUjxY0qSFHrJbzhuqAcZ0qM4zu0ooJg7ESehvDjR+vQ9jjhh8rXWHegA=="],
 
     "@kcconfigs/tsconfig": ["@kcconfigs/tsconfig@2.1.2", "", { "dependencies": { "@kctypes/generic": "3.0.0", "@types/bun": "^1.4.3", "@types/node": "^24.19.2" }, "peerDependencies": { "typescript": "^6.0.0" } }, "sha512-F/EtjiCt7m0UFXJjk2aHVSp3dJ6zpNQR663Ra0YxALGBaH6u6Ok5fJQ/vlVkzhan0lBRYOGQaHZ9rwceoik+XA=="],
 
-    "@kcstyles/reset.css": ["@kcstyles/reset.css@2.0.3", "", {}, "sha512-r7npQrX3To5J0ylepoh6Nto9dfVw/tTnnsi7wRIoi9XkcgbLuq8yJ+seu0+wXmxISdDev6qs0zlMFzhOiHjakA=="],
+    "@kcstyles/reset.css": ["@kcstyles/reset.css@2.0.4", "", {}, "sha512-XFSTkC+odbN6GIXSYexCE0WCeMRk1/dtNctwoRhQTlQuRCn1wGiYpx7SgWspLMKiSSVGxZyY10IW+3c1wIgq1w=="],
 
     "@kctypes/generic": ["@kctypes/generic@3.0.0", "", { "dependencies": { "typescript": "6.0.3", "vitest": "5.0.3" } }, "sha512-VIdFwxqUhj4ZK5BNM1646CsUb4DHMC4W8iVfAQfQFJohX8wSTt7SxXHW3BxnnQmzFBbYbEjmo5e71mQAhV50yQ=="],
 

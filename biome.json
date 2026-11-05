@@ -1,6 +1,6 @@
 {
 	"$schema": "https://biomejs.dev/schemas/2.6.5/schema.json",
-	"extends": ["@kcconfigs/biome/astro"],
+	"extends": ["@kcconfigs/biome/configs/astro"],
 	"files": {
 		"includes": ["!.claude", "!public"]
 	}

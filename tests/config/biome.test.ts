@@ -21,7 +21,7 @@ const lint = (source: string) => {
 describe("biome.json", () => {
 	it("extends the astro preset", () => {
 		const config = JSON.parse(readFileSync(join(root, "biome.json"), "utf8"))
-		expect(config.extends).toContain("@kcconfigs/biome/astro")
+		expect(config.extends).toContain("@kcconfigs/biome/configs/astro")
 	})
 
 	it("does not flag frontmatter imports and variables used only in the template", () => {
