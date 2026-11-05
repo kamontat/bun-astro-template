@@ -1,0 +1,36 @@
+{
+	"name": "<TODO>",
+	"type": "module",
+	"private": true,
+	"imports": {
+		"#lib/*": "./src/lib/*.ts",
+		"#components/*": "./src/components/*",
+		"#layouts/*": "./src/layouts/*"
+	},
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"test": "vitest run",
+		"check": "bun run check:type && bun run check:biome",
+		"check:type": "astro check",
+		"check:biome": "biome check",
+		"format": "biome check --unsafe --write",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"@kcstyles/reset.css": "2.0.1",
+		"astro": "7.4.1"
+	},
+	"devDependencies": {
+		"@astrojs/check": "0.9.11",
+		"@biomejs/biome": "2.5.15",
+		"@kcconfigs/biome": "3.0.0",
+		"@kcconfigs/tsconfig": "2.1.0",
+		"@types/bun": "1.4.3",
+		"happy-dom": "21.0.1",
+		"typescript": "6.0.3",
+		"vitest": "4.1.12",
+		"wrangler": "4.151.3"
+	}
+}
