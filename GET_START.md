@@ -116,14 +116,14 @@ grep -rn "<TODO>" --exclude-dir=node_modules .
 
 Replace them as follows:
 
-| File | Change |
-| ---- | ------ |
-| `package.json` | `"name": "<TODO>"` to `"name": "PROJECT_NAME"` |
-| `bun.lock` | `"name": "<TODO>"` to `"name": "PROJECT_NAME"` |
-| `wrangler.jsonc` | `"name": "<TODO>"` to `"name": "PROJECT_NAME"` |
-| `src/pages/index.astro` | `<BaseLayout title="TODO">` to `<BaseLayout title="PAGE_TITLE">` (plain `TODO`, so the grep above does not list it) |
-| `.github/workflows/deploy-preview.yml` | `environment.url`: fix in Phase 5 once the workers.dev subdomain is known |
-| `.github/workflows/deploy-production.yml` | `environment.url`: fix in Phase 5 |
+| File                                      | Change                                                                                                              |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `package.json`                            | `"name": "<TODO>"` to `"name": "PROJECT_NAME"`                                                                      |
+| `bun.lock`                                | `"name": "<TODO>"` to `"name": "PROJECT_NAME"`                                                                      |
+| `wrangler.jsonc`                          | `"name": "<TODO>"` to `"name": "PROJECT_NAME"`                                                                      |
+| `src/pages/index.astro`                   | `<BaseLayout title="TODO">` to `<BaseLayout title="PAGE_TITLE">` (plain `TODO`, so the grep above does not list it) |
+| `.github/workflows/deploy-preview.yml`    | `environment.url`: fix in Phase 5 once the workers.dev subdomain is known                                           |
+| `.github/workflows/deploy-production.yml` | `environment.url`: fix in Phase 5                                                                                   |
 
 The workflow URLs also contain the template author's domains
 (`kcinth.workers.dev` and `kc.in.th`). Both must be replaced; never leave

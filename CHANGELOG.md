@@ -2,7 +2,7 @@
 
 What changed in this project and why, newest first.
 
-## 2026-11-05: Astro template on Bun, ported from bun-lit-template
+## 2026-11-05: Astro template on Bun, ported from bun-lit-template, and dependency upgrades with the Biome astro preset
 
 ### Features
 
@@ -24,6 +24,18 @@ What changed in this project and why, newest first.
 - `.vscode/extensions.json` recommends the Astro extension, and `bun run astro …` runs any
   other Astro CLI command, such as `bun run astro add <integration>`.
 
+### Improvements
+
+- Every dependency is on its latest stable release, including Biome 2.6.5, Vitest 5.1.0,
+  Astro 7.4.5, `@kcconfigs/biome` 4.2.0 and `@kcstyles/reset.css` 2.1.0.
+- `biome.json` extends `@kcconfigs/biome/configs/astro`, which turns on Biome's full HTML
+  support, so imports and variables used only in an `.astro` template are no longer flagged
+  as unused. The local `.astro` rule overrides are gone, and
+  `tests/config/biome.test.ts` checks this behaviour.
+- The preset's base formatting now applies to the whole repo: no semicolons, 120-column
+  lines, object bracket spacing, and Markdown formatted with space indents. Biome 2.5
+  silently dropped the preset's nested `extends`, so this formatting was never applied before.
+
 ### Decisions
 
 - Vitest replaces `bun test` because `.astro` files need Astro's Vite compiler, which
@@ -32,3 +44,5 @@ What changed in this project and why, newest first.
   (`/about` served from `about.html`), and makes `dev` 404 the same paths production does.
 - GTM stays a bundled module script calling `loadGtm`, not Google's inline snippet, so the
   id stays out of the repository and the call is dropped from builds without an id.
+- TypeScript stays on 6.0.3 rather than 7: `@astrojs/check` accepts only `^5 || ^6` and
+  `@kcconfigs/tsconfig` only `^6`.
