@@ -117,6 +117,7 @@ favicons in `public/`.
 ├── scripts/             # standalone programs run by package scripts (none yet)
 ├── .claude/skills/      # Claude Code skills for working in this repo
 ├── .github/workflows/   # CI, preview, and production deploy pipelines
+├── .vscode/             # recommends the Astro extension, Biome fix on save
 ├── CHANGELOG.md         # what changed and why, newest first
 ├── GET_START.md         # setup prompt for an AI agent
 ├── astro.config.ts      # static output, file-format pages, no trailing slash
@@ -151,6 +152,7 @@ import { loadGtm } from "#lib/gtm"; // ./src/lib/gtm.ts
 | `bun run check:type`  | Type check every `.astro` and `.ts` file with `astro check` |
 | `bun run check:biome` | Lint and format check with Biome, without changing files |
 | `bun run format`      | Apply Biome fixes and formatting (including unsafe ones) |
+| `bun run astro …`     | Any other Astro CLI command, e.g. `bun run astro add <name>` |
 
 `dev` and `preview` accept `--port` / `--host`, for example
 `bun run dev --port 3000`. See the
@@ -195,7 +197,7 @@ Client-side behaviour goes in a `<script>` tag inside the component; Astro
 bundles it (TypeScript and `#lib/*` imports included) and ships it once per
 page. To use a UI framework (React, Svelte, Lit, …) add its
 [integration](https://docs.astro.build/en/guides/integrations-guide/) with
-`bunx --bun astro add <name>`.
+`bun run astro add <name>`.
 
 > [!NOTE]
 > Biome only reads an `.astro` file's frontmatter, so imports used only in the

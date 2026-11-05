@@ -23,6 +23,9 @@ report, not a reason to drop the flag.
 stops before Biome runs. `format` is `biome check --unsafe --write` — read the diff after,
 since unsafe fixes can change behaviour.
 
+`astro` is a passthrough to the Astro CLI, so `bun run astro add <integration>` and
+`bun run astro sync` run on Bun like everything else.
+
 A script that is a *program* (it fetches, generates or migrates something) is a file under
 `scripts/`, run with `bun scripts/<name>.ts` from a package script. No page imports it, so
 it never reaches the bundle, and `check:type` covers it without any config change.

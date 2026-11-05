@@ -15,7 +15,8 @@
 		"check": "bun run check:type && bun run check:biome",
 		"check:type": "astro check",
 		"check:biome": "biome check",
-		"format": "biome check --unsafe --write"
+		"format": "biome check --unsafe --write",
+		"astro": "astro"
 	},
 	"dependencies": {
 		"@kcstyles/reset.css": "2.0.1",
