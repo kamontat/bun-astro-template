@@ -5,10 +5,32 @@ description: Use when writing or editing an Astro component or layout in src/com
 
 # Components
 
+## Atomic tiers
+
+Components follow Atomic Design. Every component is an `.astro` file in
+`src/components/<tier>/<PascalName>.astro`, and its tier limits which components it imports:
+
+| Tier | Directory | Holds | May import |
+|---|---|---|---|
+| Atoms | `atoms/` | one element: heading, button, link, icon | no component |
+| Molecules | `molecules/` | a few atoms acting as one unit: label + input + button | atoms |
+| Organisms | `organisms/` | a page section: header, footer, card grid | atoms, molecules, organisms |
+
+Atomic *templates* are `src/layouts/` and *pages* are `src/pages/`; both may import any tier.
+`tests/components/atomic.test.ts` (rules in `tests/components/atomic.ts`) fails on a
+component outside a tier, or on an import its tier does not allow — a molecule importing a
+molecule included.
+
+- Pick the lowest tier that fits. An atom that needs another component is a molecule; a
+  molecule that needs another molecule is an organism. Move it up instead of loosening the
+  rule.
+- Atoms take their content through props or `<slot />`; they never hardcode page copy.
+- Moving a component between tiers moves its test too (`tests/components/<tier>/`), and
+  every import of it.
+
 ## Shape of a component
 
-Every component is an `.astro` file in `src/components/<PascalName>.astro`: a frontmatter
-script that runs at build time, then the template.
+A component is a frontmatter script that runs at build time, then the template.
 
 ```astro
 ---
@@ -31,7 +53,7 @@ const { name = "World" } = Astro.props;
 - Props are typed by an `interface Props` in the frontmatter; `astro check` enforces it at
   every call site. Optional props get their default in the destructuring.
 - Children go through `<slot />` (and named slots, `<slot name="aside" />`).
-- Import with the alias and the extension: `import Greeting from "#components/Greeting.astro";`.
+- Import with the alias, tier and extension: `import Greeting from "#components/atoms/Greeting.astro";`.
 - `src/components/` may import from `src/lib/` and `src/styles/`, never from `src/pages/`.
 - Layouts (`src/layouts/`) are components that render the `<html>` shell; pages wrap their
   content in `BaseLayout` (see the `adding-a-page` skill).
@@ -87,7 +109,7 @@ to an HTML string with the Container API:
 ```ts
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { expect, test } from "vitest";
-import Greeting from "#components/Greeting.astro";
+import Greeting from "#components/atoms/Greeting.astro";
 
 test("renders the name", async () => {
 	const container = await AstroContainer.create();

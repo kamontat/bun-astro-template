@@ -108,7 +108,10 @@ favicons in `public/`.
 ├── src/                 # application code
 │   ├── pages/           # routes, one file per page (index.astro is /)
 │   ├── layouts/         # page shells             (import as #layouts/*), e.g. BaseLayout.astro
-│   ├── components/      # Astro components        (import as #components/*)
+│   ├── components/      # Astro components        (import as #components/*), in atomic tiers:
+│   │   ├── atoms/       #   smallest pieces, import no component (HelloWorld.astro)
+│   │   ├── molecules/   #   groups of atoms
+│   │   └── organisms/   #   page sections built from atoms, molecules and organisms
 │   ├── lib/             # shared TypeScript       (import as #lib/*), e.g. gtm.ts
 │   ├── styles/          # global CSS, imported by BaseLayout
 │   └── env.d.ts         # types for import.meta.env (PUBLIC_GTM_ID)
@@ -135,7 +138,7 @@ favicons in `public/`.
 so you never need long relative paths:
 
 ```ts
-import HelloWorld from "#components/HelloWorld.astro" // ./src/components/HelloWorld.astro
+import HelloWorld from "#components/atoms/HelloWorld.astro" // ./src/components/atoms/HelloWorld.astro
 import BaseLayout from "#layouts/BaseLayout.astro" // ./src/layouts/BaseLayout.astro
 import { loadGtm } from "#lib/gtm" // ./src/lib/gtm.ts
 ```
@@ -161,8 +164,22 @@ options.
 
 ## Writing components
 
-Components live in `src/components/` as `.astro` files. The frontmatter runs at
-build time; the template below it becomes HTML, and `<style>` is scoped to the
+Components follow [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/)
+and live in `src/components/<tier>/` as `.astro` files:
+
+| Tier      | Directory                   | Holds                                       | May import components from  |
+| --------- | --------------------------- | ------------------------------------------- | --------------------------- |
+| Atoms     | `src/components/atoms/`     | One element: heading, button, link, icon    | nothing                     |
+| Molecules | `src/components/molecules/` | A few atoms working as a unit: search field | atoms                       |
+| Organisms | `src/components/organisms/` | A page section: header, footer, card grid   | atoms, molecules, organisms |
+| Templates | `src/layouts/`              | The page shell (`BaseLayout`)               | any tier                    |
+| Pages     | `src/pages/`                | Routes filling a template with content      | any tier, layouts           |
+
+`tests/components/atomic.test.ts` fails when a component sits outside a tier
+or imports a tier it may not. Pick the lowest tier that fits; a component that
+starts importing another of its own tier has grown into the next one.
+
+The frontmatter runs at build time; the template below it becomes HTML, and `<style>` is scoped to the
 component:
 
 ```astro
@@ -187,7 +204,7 @@ Use it from a page or another component:
 
 ```astro
 ---
-import Greeting from "#components/Greeting.astro";
+import Greeting from "#components/atoms/Greeting.astro";
 ---
 
 <Greeting name="Bun" />
@@ -242,7 +259,7 @@ the Container API:
 ```ts
 import { experimental_AstroContainer as AstroContainer } from "astro/container"
 import { expect, test } from "vitest"
-import HelloWorld from "#components/HelloWorld.astro"
+import HelloWorld from "#components/atoms/HelloWorld.astro"
 
 test("renders custom name", async () => {
   const container = await AstroContainer.create()

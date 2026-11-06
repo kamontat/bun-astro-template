@@ -31,7 +31,7 @@ A script that is a *program* (it fetches, generates or migrates something) is a 
 it never reaches the bundle, and `check:type` covers it without any config change.
 
 Where code lives: pages in `src/pages/`, layouts in `src/layouts/`, components in
-`src/components/`, shared TypeScript in `src/lib/`, static files in `public/`, tests in
+`src/components/{atoms,molecules,organisms}/`, shared TypeScript in `src/lib/`, static files in `public/`, tests in
 `tests/` mirroring `src/` (`src/lib/gtm.ts` → `tests/lib/gtm.test.ts`), programs in
 `scripts/`.
 

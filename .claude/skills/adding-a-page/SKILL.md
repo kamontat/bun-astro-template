@@ -43,7 +43,7 @@ Dynamic routes (`[slug].astro`) need `getStaticPaths()` because the site is buil
    the global stylesheet and the Google Tag Manager script. A page never writes its own
    `<html>` or `<head>`.
 2. Import components and layouts through the `#components/*` and `#layouts/*` aliases,
-   with the `.astro` extension (`#components/HelloWorld.astro`).
+   with the `.astro` extension (`#components/atoms/HelloWorld.astro`).
 3. Link between pages with root-relative links that match the route exactly — `/about`,
    never `/about/` (`trailingSlash: "never"` makes the dev server 404 the slash form, the
    same as production).
