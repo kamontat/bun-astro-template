@@ -233,8 +233,8 @@ src/pages/blog/post.astro    ->  /blog/post    (dist/blog/post.html)
 ```
 
 Every page renders inside `BaseLayout`, which owns the `<html>` shell, the
-global CSS and Google Tag Manager (`tests/pages/pages.test.ts` fails
-otherwise):
+global CSS and Google Tag Manager, either directly or through a layout that
+wraps it (`tests/pages/pages.test.ts` fails otherwise):
 
 ```astro
 ---
@@ -354,16 +354,17 @@ than at the top of `<head>` as in Google's snippet, and there is no
 `.claude/skills/` holds [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills)
 that teach an agent this repository's workflow and conventions:
 
-| Skill               | Covers                                                                                     |
-| ------------------- | ------------------------------------------------------------------------------------------ |
-| `shipping-a-change` | every change in a worktree, test first, ending in a PR with a preview URL                  |
-| `landing-a-change`  | after approval: changelog entry, merge commit, worktree cleanup                            |
-| `changelog`         | the `CHANGELOG.md` entry format and which section a change belongs in                      |
-| `adding-a-page`     | adding a route under `src/pages/`, `BaseLayout`, links and trailing slashes                |
-| `astro-components`  | Astro component conventions, scoped styles, client scripts, Container API tests            |
-| `build-and-deploy`  | the build, `astro.config.ts`, `wrangler.jsonc`, workflows, pinned action SHAs              |
-| `repo-scripts`      | package scripts, the Bun runtime flag, what `check` reads, TypeScript and Biome strictness |
+| Skill                | Covers                                                                                     |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+| `project-shipping`   | every change in a worktree, test first, ending in a PR with a preview URL                  |
+| `project-landing`    | after approval: changelog entry, merge commit, worktree cleanup                            |
+| `project-changelog`  | the `CHANGELOG.md` entry format and which section a change belongs in                      |
+| `project-pages`      | atomic pages: routes under `src/pages/`, page copy, links and trailing slashes             |
+| `project-layouts`    | atomic templates: `BaseLayout`, layouts in `src/layouts/`, named slots                     |
+| `project-components` | atoms, molecules, organisms; scoped styles, client scripts, Container API tests            |
+| `project-deploy`     | the build, `astro.config.ts`, `wrangler.jsonc`, workflows, pinned action SHAs              |
+| `project-scripts`    | package scripts, the Bun runtime flag, what `check` reads, TypeScript and Biome strictness |
 
-`shipping-a-change` and `landing-a-change` assume merge commits are allowed and
+`project-shipping` and `project-landing` assume merge commits are allowed and
 head branches are deleted after merge (`gh repo edit --enable-merge-commit
 --delete-branch-on-merge`).
