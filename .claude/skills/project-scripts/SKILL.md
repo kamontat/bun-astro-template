@@ -1,5 +1,5 @@
 ---
-name: repo-scripts
+name: project-scripts
 description: Use when adding or changing a package script, adding a file under scripts/, running the dev server, or fixing a `bun run check` (astro check or Biome) failure. Covers where a script lives, what each check reads, and how TypeScript and Biome strictness interact.
 ---
 
@@ -74,7 +74,7 @@ No TypeScript import carries a `.ts` extension; `.astro` imports always carry `.
 ones. Formatting comes from `@kcconfigs/biome` (tabs, double quotes, line width 120) via
 `biome.json`, which also skips `.claude/`, `.astro/` and `public/`. Import order is
 enforced by the organize-imports assist. In `.astro` files Biome sees only the frontmatter,
-so `biome.json` turns off the unused-import rules there (see the `astro-components` skill).
+so `biome.json` turns off the unused-import rules there (see the `project-components` skill).
 `biome.json` is plain JSON: a comment in it makes Biome refuse the whole config.
 
 ## Dev server

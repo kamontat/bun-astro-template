@@ -1,5 +1,5 @@
 ---
-name: shipping-a-change
+name: project-shipping
 description: Use when starting any code, style, config, docs or CI change in this repo — a feature, bugfix, refactor or tweak — before editing a file, including one-line fixes and changes the user calls small.
 ---
 
@@ -9,7 +9,7 @@ description: Use when starting any code, style, config, docs or CI change in thi
 
 Every change in this repo lives in its own worktree and branch, is built test-first, and
 ends with a pull request whose preview deployment URL goes back to the user. Nothing is
-edited on `main`, and nothing is merged here — merging is `landing-a-change`, and only after
+edited on `main`, and nothing is merged here — merging is `project-landing`, and only after
 the user approves.
 
 **Violating the letter of these steps is violating their spirit.** The user set this
@@ -62,7 +62,7 @@ size or "just" are not permission. When they do skip one, say which in the PR te
    to `GET_START.md`.
 
 Then stop and hand the user the PR link and preview URL. Wait for their approval before
-using `landing-a-change`.
+using `project-landing`.
 
 ## Red flags — stop
 

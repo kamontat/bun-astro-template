@@ -1,5 +1,5 @@
 ---
-name: landing-a-change
+name: project-landing
 description: Use when the user approves a change in this repo that has an open pull request and preview URL — "ok", "looks good", "ship it", "merge it", "LGTM" — or asks to merge, finish or clean up a worktree branch.
 ---
 
@@ -7,7 +7,7 @@ description: Use when the user approves a change in this repo that has an open p
 
 ## Overview
 
-Landing turns an approved pull request (opened by `shipping-a-change`) into a `main`
+Landing turns an approved pull request (opened by `project-shipping`) into a `main`
 commit: changelog entry first, then merge, then cleanup, ending back on an up-to-date
 `main`. Only start after the user has approved this specific change.
 
