@@ -2,6 +2,23 @@
 
 What changed in this project and why, newest first.
 
+## 2026-11-06: Dependency patch upgrades and Biome formatting for Astro files
+
+### Improvements
+
+- Astro is on 7.4.7, `@kcstyles/reset.css` on 2.1.1, `@kcconfigs/biome` on 4.2.1 and
+  `@kcconfigs/tsconfig` on 2.1.4.
+- `@kcconfigs/biome` 4.2.1 formats the frontmatter, scripts and styles of `.astro` files like
+  the rest of the repo: no semicolons, and void tags such as `<meta>` without `/>`.
+- The `BaseLayout` and page tests that read source text accept a line with or without a
+  trailing semicolon, so they no longer break when the formatter changes.
+
+### Decisions
+
+- TypeScript stays on 6.0.3 rather than 7.0.2, because `astro check` refuses to run on
+  TypeScript 7. Astro points to the experimental `@astrojs/ts-content-mapper` for
+  TypeScript 7.1+, which was not adopted here.
+
 ## 2026-11-05: Astro template on Bun, ported from bun-lit-template, and dependency upgrades with the Biome astro preset
 
 ### Features
