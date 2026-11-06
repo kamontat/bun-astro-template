@@ -2,10 +2,38 @@
 
 What changed in this project and why, newest first.
 
-## 2026-11-06: Dependency patch upgrades and Biome formatting for Astro files
+## 2026-11-06: Dependency patch upgrades and Biome formatting for Astro files, and atomic design components with project skills
+
+### BREAKING CHANGES
+
+- `HelloWorld` moved to `src/components/atoms/`; import it as
+  `#components/atoms/HelloWorld.astro`. A component left directly in `src/components/` now
+  fails the tests.
+- Every project skill is renamed with a `project-` prefix: `shipping-a-change` is
+  `project-shipping`, `landing-a-change` is `project-landing`, `changelog` is
+  `project-changelog`, `adding-a-page` is `project-pages`, `astro-components` is
+  `project-components`, `build-and-deploy` is `project-deploy` and `repo-scripts` is
+  `project-scripts`. Invoke them by the new names.
+
+### Features
+
+- Components follow Atomic Design in `src/components/atoms/`, `molecules/` and `organisms/`,
+  with `src/layouts/` as templates and `src/pages/` as pages.
+  `tests/components/atomic.test.ts` fails on a component outside a tier or an import its tier
+  may not make: atoms import no component, molecules import atoms, organisms import atoms,
+  molecules and organisms.
+- A `project-layouts` skill covers `BaseLayout` and layouts that wrap it, split out of the
+  components skill.
+- `tests/skills.test.ts` requires every skill directory to start with `project-` and its
+  `SKILL.md` `name` to match the directory.
 
 ### Improvements
 
+- The `project-components`, `project-layouts` and `project-pages` skills each carry a worked
+  example: a `Button` atom, a `SearchForm` molecule, a `SiteHeader` organism, an
+  `ArticleLayout` template and a page that fills it.
+- A page may render any layout that wraps `BaseLayout` instead of `BaseLayout` itself, and
+  `tests/pages/pages.test.ts` now also fails on a layout that does not wrap `BaseLayout`.
 - Astro is on 7.4.7, `@kcstyles/reset.css` on 2.1.1, `@kcconfigs/biome` on 4.2.1 and
   `@kcconfigs/tsconfig` on 2.1.4.
 - `@kcconfigs/biome` 4.2.1 formats the frontmatter, scripts and styles of `.astro` files like
@@ -13,7 +41,17 @@ What changed in this project and why, newest first.
 - The `BaseLayout` and page tests that read source text accept a line with or without a
   trailing semicolon, so they no longer break when the formatter changes.
 
+### Bug fixes
+
+- `<div row>` and `<div block>`, the `@kcstyles/reset.css` layout attributes, pass
+  `astro check`: `src/env.d.ts` declares them on `astroHTML.JSX.HTMLAttributes`.
+
 ### Decisions
+
+- The atomic templates and pages tiers reuse `src/layouts/` and `src/pages/` rather than
+  adding `src/components/templates/`, so `BaseLayout` and the `#layouts/*` alias stay put.
+- The skill examples live only in the skills, not in `src/`, so the template ships no
+  components a new project has to delete. Each was type-checked and built before merging.
 
 - TypeScript stays on 6.0.3 rather than 7.0.2, because `astro check` refuses to run on
   TypeScript 7. Astro points to the experimental `@astrojs/ts-content-mapper` for
