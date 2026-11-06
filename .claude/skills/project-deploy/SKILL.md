@@ -1,5 +1,5 @@
 ---
-name: build-and-deploy
+name: project-deploy
 description: Use when changing `bun run build`, `bun run dev`, `bun run preview`, astro.config.ts, public/, wrangler.jsonc, the dist/ output shape, or anything under .github/workflows/ — including bumping a pinned action SHA or debugging a Cloudflare deploy.
 ---
 
@@ -9,8 +9,8 @@ description: Use when changing `bun run build`, `bun run dev`, `bun run preview`
 
 `dev`, `build` and `preview` are each one `astro` command in `package.json`, with no wrapper
 script, run on the Bun runtime through `bunfig.toml`'s `[run] bun = true` (see the
-`repo-scripts` skill). `astro build` renders every route under `src/pages/` (see the
-`adding-a-page` skill) to static HTML in `dist/`, with bundled scripts and styles in
+`project-scripts` skill). `astro build` renders every route under `src/pages/` (see the
+`project-pages` skill) to static HTML in `dist/`, with bundled scripts and styles in
 `dist/_astro/` under hashed names, and copies `public/` to the root of `dist/` unchanged.
 Astro empties `dist/` before each build, so no stale file from an earlier build reaches a
 deploy.
@@ -104,4 +104,4 @@ because the bundler drops the call it can prove does nothing.
 - Deploy passed but the page is unstyled or broken: open the browser console. A 404 on an
   `/_astro/` file means a stale or partial `dist/`; a 404 on the page itself means no file
   under `src/pages/` maps to that path, or the link has a trailing slash (see
-  `adding-a-page`).
+  `project-pages`).

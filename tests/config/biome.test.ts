@@ -28,7 +28,7 @@ describe("biome.json", () => {
 		const result = lint(
 			[
 				"---",
-				'import HelloWorld from "../../src/components/HelloWorld.astro"',
+				'import HelloWorld from "../../src/components/atoms/HelloWorld.astro"',
 				'let name = "world"',
 				"---",
 				"",

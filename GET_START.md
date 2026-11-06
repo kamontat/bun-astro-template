@@ -35,7 +35,7 @@ a step needs my input or fails in a way you cannot fix. Do not skip
 verification steps, and report real command output when something fails.
 
 The template ships Claude Code skills in `.claude/skills/`. Two of them,
-`shipping-a-change` and `landing-a-change`, require a worktree and pull request
+`project-shipping` and `project-landing`, require a worktree and pull request
 for every change. They apply to changes made after this setup. This initial
 setup commits directly to `main`, because there is no deployed site to preview
 yet.

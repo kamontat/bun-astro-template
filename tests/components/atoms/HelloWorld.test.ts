@@ -1,7 +1,7 @@
 import { experimental_AstroContainer as AstroContainer } from "astro/container"
 import { expect, test } from "vitest"
 
-import HelloWorld from "#components/HelloWorld.astro"
+import HelloWorld from "#components/atoms/HelloWorld.astro"
 
 test("renders default greeting", async () => {
 	const container = await AstroContainer.create()

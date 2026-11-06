@@ -1,5 +1,5 @@
 ---
-name: landing-a-change
+name: project-landing
 description: Use when the user approves a change in this repo that has an open pull request and preview URL — "ok", "looks good", "ship it", "merge it", "LGTM" — or asks to merge, finish or clean up a worktree branch.
 ---
 
@@ -7,7 +7,7 @@ description: Use when the user approves a change in this repo that has an open p
 
 ## Overview
 
-Landing turns an approved pull request (opened by `shipping-a-change`) into a `main`
+Landing turns an approved pull request (opened by `project-shipping`) into a `main`
 commit: changelog entry first, then merge, then cleanup, ending back on an up-to-date
 `main`. Only start after the user has approved this specific change.
 
@@ -17,7 +17,7 @@ commit: changelog entry first, then merge, then cleanup, ending back on an up-to
    `git merge origin/main`, so the changelog edit sees entries other PRs landed. Resolve
    conflicts, rerun `bun run check` and `bun run test`.
 2. **Changelog entry, on the PR branch.** Edit `CHANGELOG.md` following
-   `.claude/skills/changelog`, which owns the entry format (`## YYYY-MM-DD: <title>` with
+   the `project-changelog` skill, which owns the entry format (`## YYYY-MM-DD: <title>` with
    BREAKING CHANGES, Features, Improvements, Bug fixes and Decisions). The date is today's.
 3. **Commit and push.** `docs(changelog): <title>`, then `git push`. Wait for checks:
    `gh pr checks <number> --watch`. A failing check stops the landing — fix it on the

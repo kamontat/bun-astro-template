@@ -108,7 +108,10 @@ favicons in `public/`.
 ├── src/                 # application code
 │   ├── pages/           # routes, one file per page (index.astro is /)
 │   ├── layouts/         # page shells             (import as #layouts/*), e.g. BaseLayout.astro
-│   ├── components/      # Astro components        (import as #components/*)
+│   ├── components/      # Astro components        (import as #components/*), in atomic tiers:
+│   │   ├── atoms/       #   smallest pieces, import no component (HelloWorld.astro)
+│   │   ├── molecules/   #   groups of atoms
+│   │   └── organisms/   #   page sections built from atoms, molecules and organisms
 │   ├── lib/             # shared TypeScript       (import as #lib/*), e.g. gtm.ts
 │   ├── styles/          # global CSS, imported by BaseLayout
 │   └── env.d.ts         # types for import.meta.env (PUBLIC_GTM_ID)
@@ -135,7 +138,7 @@ favicons in `public/`.
 so you never need long relative paths:
 
 ```ts
-import HelloWorld from "#components/HelloWorld.astro" // ./src/components/HelloWorld.astro
+import HelloWorld from "#components/atoms/HelloWorld.astro" // ./src/components/atoms/HelloWorld.astro
 import BaseLayout from "#layouts/BaseLayout.astro" // ./src/layouts/BaseLayout.astro
 import { loadGtm } from "#lib/gtm" // ./src/lib/gtm.ts
 ```
@@ -161,8 +164,22 @@ options.
 
 ## Writing components
 
-Components live in `src/components/` as `.astro` files. The frontmatter runs at
-build time; the template below it becomes HTML, and `<style>` is scoped to the
+Components follow [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/)
+and live in `src/components/<tier>/` as `.astro` files:
+
+| Tier      | Directory                   | Holds                                       | May import components from  |
+| --------- | --------------------------- | ------------------------------------------- | --------------------------- |
+| Atoms     | `src/components/atoms/`     | One element: heading, button, link, icon    | nothing                     |
+| Molecules | `src/components/molecules/` | A few atoms working as a unit: search field | atoms                       |
+| Organisms | `src/components/organisms/` | A page section: header, footer, card grid   | atoms, molecules, organisms |
+| Templates | `src/layouts/`              | The page shell (`BaseLayout`)               | any tier                    |
+| Pages     | `src/pages/`                | Routes filling a template with content      | any tier, layouts           |
+
+`tests/components/atomic.test.ts` fails when a component sits outside a tier
+or imports a tier it may not. Pick the lowest tier that fits; a component that
+starts importing another of its own tier has grown into the next one.
+
+The frontmatter runs at build time; the template below it becomes HTML, and `<style>` is scoped to the
 component:
 
 ```astro
@@ -187,7 +204,7 @@ Use it from a page or another component:
 
 ```astro
 ---
-import Greeting from "#components/Greeting.astro";
+import Greeting from "#components/atoms/Greeting.astro";
 ---
 
 <Greeting name="Bun" />
@@ -216,8 +233,8 @@ src/pages/blog/post.astro    ->  /blog/post    (dist/blog/post.html)
 ```
 
 Every page renders inside `BaseLayout`, which owns the `<html>` shell, the
-global CSS and Google Tag Manager (`tests/pages/pages.test.ts` fails
-otherwise):
+global CSS and Google Tag Manager, either directly or through a layout that
+wraps it (`tests/pages/pages.test.ts` fails otherwise):
 
 ```astro
 ---
@@ -242,7 +259,7 @@ the Container API:
 ```ts
 import { experimental_AstroContainer as AstroContainer } from "astro/container"
 import { expect, test } from "vitest"
-import HelloWorld from "#components/HelloWorld.astro"
+import HelloWorld from "#components/atoms/HelloWorld.astro"
 
 test("renders custom name", async () => {
   const container = await AstroContainer.create()
@@ -337,16 +354,17 @@ than at the top of `<head>` as in Google's snippet, and there is no
 `.claude/skills/` holds [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills)
 that teach an agent this repository's workflow and conventions:
 
-| Skill               | Covers                                                                                     |
-| ------------------- | ------------------------------------------------------------------------------------------ |
-| `shipping-a-change` | every change in a worktree, test first, ending in a PR with a preview URL                  |
-| `landing-a-change`  | after approval: changelog entry, merge commit, worktree cleanup                            |
-| `changelog`         | the `CHANGELOG.md` entry format and which section a change belongs in                      |
-| `adding-a-page`     | adding a route under `src/pages/`, `BaseLayout`, links and trailing slashes                |
-| `astro-components`  | Astro component conventions, scoped styles, client scripts, Container API tests            |
-| `build-and-deploy`  | the build, `astro.config.ts`, `wrangler.jsonc`, workflows, pinned action SHAs              |
-| `repo-scripts`      | package scripts, the Bun runtime flag, what `check` reads, TypeScript and Biome strictness |
+| Skill                | Covers                                                                                     |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+| `project-shipping`   | every change in a worktree, test first, ending in a PR with a preview URL                  |
+| `project-landing`    | after approval: changelog entry, merge commit, worktree cleanup                            |
+| `project-changelog`  | the `CHANGELOG.md` entry format and which section a change belongs in                      |
+| `project-pages`      | atomic pages: routes under `src/pages/`, page copy, links and trailing slashes             |
+| `project-layouts`    | atomic templates: `BaseLayout`, layouts in `src/layouts/`, named slots                     |
+| `project-components` | atoms, molecules, organisms; scoped styles, client scripts, Container API tests            |
+| `project-deploy`     | the build, `astro.config.ts`, `wrangler.jsonc`, workflows, pinned action SHAs              |
+| `project-scripts`    | package scripts, the Bun runtime flag, what `check` reads, TypeScript and Biome strictness |
 
-`shipping-a-change` and `landing-a-change` assume merge commits are allowed and
+`project-shipping` and `project-landing` assume merge commits are allowed and
 head branches are deleted after merge (`gh repo edit --enable-merge-commit
 --delete-branch-on-merge`).
